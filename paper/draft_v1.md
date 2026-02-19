@@ -2,8 +2,8 @@
 ## Graph-Structured Dependency Navigation Outperforms Retrieval in Architecture-Heavy Tasks
 
 **Tarakanath Paipuru**
-*[Institution]*
-*[Date]*
+*Independent Researcher*
+*February 2026*
 
 ---
 
