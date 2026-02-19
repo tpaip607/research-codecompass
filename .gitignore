@@ -210,4 +210,4 @@ __marimo__/
 results/           # Trial transcripts (large, regenerable)
 *.pkl              # BM25 indices (regenerable)
 .idea/             # JetBrains IDE
-.vscode/           # VS Code settings
+.vscode/           # VS Code settingspaper/
