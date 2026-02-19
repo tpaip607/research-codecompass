@@ -1,0 +1,10 @@
+{
+  "task_id": "g1_task_07",
+  "group": "semantic",
+  "description": "Update CORS allowed_hosts to specific domains",
+  "required_files": [
+    "app/core/settings/app.py",
+    "app/main.py"
+  ],
+  "min_acs_threshold": 1.0
+}

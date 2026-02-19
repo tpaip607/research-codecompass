@@ -1,0 +1,12 @@
+{
+  "task_id": "g3_task_29",
+  "group": "hidden",
+  "description": "Change user lookup to return Optional — 4 call sites depend on the exception contract",
+  "required_files": [
+    "app/db/repositories/users.py",
+    "app/api/dependencies/authentication.py",
+    "app/services/authentication.py",
+    "app/db/repositories/profiles.py"
+  ],
+  "min_acs_threshold": 0.8
+}

@@ -1,0 +1,7 @@
+{
+  "task_id": "g1_task_02",
+  "group": "semantic",
+  "description": "Update API title in settings",
+  "required_files": ["app/core/settings/app.py"],
+  "min_acs_threshold": 1.0
+}

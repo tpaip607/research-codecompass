@@ -1,0 +1,7 @@
+{
+  "task_id": "g1_task_10",
+  "group": "semantic",
+  "description": "Change JWT algorithm from HS256 to HS512",
+  "required_files": ["app/services/jwt.py"],
+  "min_acs_threshold": 1.0
+}

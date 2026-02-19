@@ -1,0 +1,7 @@
+{
+  "task_id": "g1_task_08",
+  "group": "semantic",
+  "description": "Add min_length=8 to password field in user schema",
+  "required_files": ["app/models/schemas/users.py"],
+  "min_acs_threshold": 1.0
+}

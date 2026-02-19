@@ -1,0 +1,7 @@
+{
+  "task_id": "g1_task_09",
+  "group": "semantic",
+  "description": "Add docstrings to BaseRepository class and __init__",
+  "required_files": ["app/db/repositories/base.py"],
+  "min_acs_threshold": 1.0
+}

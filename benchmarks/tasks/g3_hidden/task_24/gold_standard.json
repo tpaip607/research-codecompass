@@ -1,0 +1,12 @@
+{
+  "task_id": "g3_task_24",
+  "group": "hidden",
+  "description": "Move password hashing to hash_service.py — UserInDB model and users repo must be updated",
+  "required_files": [
+    "app/db/hash_service.py",
+    "app/services/security.py",
+    "app/models/domain/users.py",
+    "app/db/repositories/users.py"
+  ],
+  "min_acs_threshold": 0.8
+}

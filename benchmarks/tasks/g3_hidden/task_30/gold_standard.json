@@ -1,0 +1,18 @@
+{
+  "task_id": "g3_task_30",
+  "group": "hidden",
+  "description": "Change response wrapping to data key — all schemas, routes, and tests must be updated",
+  "required_files": [
+    "app/models/schemas/users.py",
+    "app/models/schemas/articles.py",
+    "app/models/schemas/profiles.py",
+    "app/models/schemas/comments.py",
+    "app/api/routes/authentication.py",
+    "app/api/routes/users.py",
+    "app/api/routes/profiles.py",
+    "app/api/routes/articles/articles_resource.py",
+    "tests/test_api/test_routes/test_authentication.py",
+    "tests/test_api/test_routes/test_users.py"
+  ],
+  "min_acs_threshold": 0.7
+}

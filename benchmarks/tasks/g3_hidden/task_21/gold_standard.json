@@ -1,0 +1,15 @@
+{
+  "task_id": "g3_task_21",
+  "group": "hidden",
+  "description": "Add cache param to get_repository — update all 6 call sites",
+  "required_files": [
+    "app/api/dependencies/database.py",
+    "app/api/routes/authentication.py",
+    "app/api/routes/users.py",
+    "app/api/routes/profiles.py",
+    "app/api/routes/comments.py",
+    "app/api/routes/articles/articles_resource.py",
+    "app/api/dependencies/articles.py"
+  ],
+  "min_acs_threshold": 0.7
+}

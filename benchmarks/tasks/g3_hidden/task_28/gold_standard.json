@@ -1,0 +1,12 @@
+{
+  "task_id": "g3_task_28",
+  "group": "hidden",
+  "description": "Change slug generation — slug is primary identifier used in routes, repo queries, and tests",
+  "required_files": [
+    "app/services/articles.py",
+    "app/api/routes/articles/articles_resource.py",
+    "app/db/repositories/articles.py",
+    "tests/test_api/test_routes/test_articles.py"
+  ],
+  "min_acs_threshold": 0.8
+}

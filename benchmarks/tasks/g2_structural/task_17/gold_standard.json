@@ -1,0 +1,11 @@
+{
+  "task_id": "g2_task_17",
+  "group": "structural",
+  "description": "Refactor DB startup to AsyncContextManager",
+  "required_files": [
+    "app/db/events.py",
+    "app/core/events.py",
+    "app/main.py"
+  ],
+  "min_acs_threshold": 0.8
+}

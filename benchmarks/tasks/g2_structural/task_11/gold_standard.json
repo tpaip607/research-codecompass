@@ -1,0 +1,11 @@
+{
+  "task_id": "g2_task_11",
+  "group": "structural",
+  "description": "Extract article creation to service layer",
+  "required_files": [
+    "app/api/routes/articles/articles_resource.py",
+    "app/services/articles.py",
+    "app/db/repositories/articles.py"
+  ],
+  "min_acs_threshold": 0.8
+}

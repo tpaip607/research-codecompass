@@ -1,0 +1,111 @@
+{
+  "by_condition_group": {
+    "A": {
+      "g1": {
+        "n": 30,
+        "acs_mean": 0.9,
+        "acs_std": 0.2034,
+        "acs_min": 0.5,
+        "acs_max": 1.0,
+        "fctc_mean": 2.27,
+        "fctc_std": 1.62
+      },
+      "g2": {
+        "n": 30,
+        "acs_mean": 0.7972,
+        "acs_std": 0.2061,
+        "acs_min": 0.5,
+        "acs_max": 1.0,
+        "fctc_mean": 1.43,
+        "fctc_std": 1.36
+      },
+      "g3": {
+        "n": 29,
+        "acs_mean": 0.7618,
+        "acs_std": 0.2362,
+        "acs_min": 0.1429,
+        "acs_max": 1.0,
+        "fctc_mean": 1.31,
+        "fctc_std": 0.81
+      }
+    },
+    "B": {
+      "g1": {
+        "n": 24,
+        "acs_mean": 1.0,
+        "acs_std": 0.0,
+        "acs_min": 1.0,
+        "acs_max": 1.0,
+        "fctc_mean": 1.79,
+        "fctc_std": 0.66
+      },
+      "g2": {
+        "n": 29,
+        "acs_mean": 0.8506,
+        "acs_std": 0.1773,
+        "acs_min": 0.5,
+        "acs_max": 1.0,
+        "fctc_mean": 1.17,
+        "fctc_std": 0.76
+      },
+      "g3": {
+        "n": 28,
+        "acs_mean": 0.7821,
+        "acs_std": 0.229,
+        "acs_min": 0.3333,
+        "acs_max": 1.0,
+        "fctc_mean": 1.14,
+        "fctc_std": 0.45
+      }
+    },
+    "C": {
+      "g1": {
+        "n": 27,
+        "acs_mean": 0.8889,
+        "acs_std": 0.2118,
+        "acs_min": 0.5,
+        "acs_max": 1.0,
+        "fctc_mean": 2.19,
+        "fctc_std": 0.88
+      },
+      "g2": {
+        "n": 30,
+        "acs_mean": 0.7639,
+        "acs_std": 0.1971,
+        "acs_min": 0.5,
+        "acs_max": 1.0,
+        "fctc_mean": 1.5,
+        "fctc_std": 1.25
+      },
+      "g3": {
+        "n": 31,
+        "acs_mean": 0.9935,
+        "acs_std": 0.0359,
+        "acs_min": 0.8,
+        "acs_max": 1.0,
+        "fctc_mean": 2.23,
+        "fctc_std": 0.88
+      }
+    }
+  },
+  "by_condition": {
+    "A": {
+      "n": 89,
+      "acs_mean": 0.8203,
+      "acs_std": 0.221,
+      "fctc_mean": 1.67
+    },
+    "B": {
+      "n": 81,
+      "acs_mean": 0.8712,
+      "acs_std": 0.1913,
+      "fctc_mean": 1.35
+    },
+    "C": {
+      "n": 88,
+      "acs_mean": 0.8831,
+      "acs_std": 0.1899,
+      "fctc_mean": 1.97
+    }
+  }
+}

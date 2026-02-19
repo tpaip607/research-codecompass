@@ -1,0 +1,7 @@
+{
+  "task_id": "g1_task_05",
+  "group": "semantic",
+  "description": "Change default pagination limit 20 to 50",
+  "required_files": ["app/models/schemas/articles.py"],
+  "min_acs_threshold": 1.0
+}

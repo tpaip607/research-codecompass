@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# CodeCompass-specific
+results/           # Trial transcripts (large, regenerable)
+*.pkl              # BM25 indices (regenerable)
+.idea/             # JetBrains IDE
+.vscode/           # VS Code settings

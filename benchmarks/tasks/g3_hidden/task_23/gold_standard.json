@@ -1,0 +1,13 @@
+{
+  "task_id": "g3_task_23",
+  "group": "hidden",
+  "description": "Add logger to BaseRepository — child repos that compose others must update their internal instantiation",
+  "required_files": [
+    "app/db/repositories/base.py",
+    "app/api/dependencies/database.py",
+    "app/db/repositories/articles.py",
+    "app/db/repositories/profiles.py",
+    "app/db/repositories/comments.py"
+  ],
+  "min_acs_threshold": 0.8
+}

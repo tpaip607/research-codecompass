@@ -1,0 +1,12 @@
+{
+  "task_id": "g2_task_12",
+  "group": "structural",
+  "description": "Create centralized pagination validator module",
+  "required_files": [
+    "app/api/validators.py",
+    "app/models/schemas/articles.py",
+    "app/api/dependencies/articles.py",
+    "app/api/routes/articles/articles_resource.py"
+  ],
+  "min_acs_threshold": 0.8
+}

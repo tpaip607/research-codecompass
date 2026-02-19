@@ -1,0 +1,11 @@
+{
+  "task_id": "g3_task_26",
+  "group": "hidden",
+  "description": "Replace lru_cache singleton — test conftest depends on settings override behavior",
+  "required_files": [
+    "app/core/config.py",
+    "app/main.py",
+    "tests/conftest.py"
+  ],
+  "min_acs_threshold": 0.8
+}

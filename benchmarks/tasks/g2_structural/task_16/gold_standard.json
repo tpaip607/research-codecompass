@@ -1,0 +1,12 @@
+{
+  "task_id": "g2_task_16",
+  "group": "structural",
+  "description": "Create error handler registry module",
+  "required_files": [
+    "app/api/errors/registry.py",
+    "app/main.py",
+    "app/api/errors/http_error.py",
+    "app/api/errors/validation_error.py"
+  ],
+  "min_acs_threshold": 0.8
+}

@@ -1,0 +1,11 @@
+{
+  "task_id": "g2_task_14",
+  "group": "structural",
+  "description": "Add database URL validator to config pipeline",
+  "required_files": [
+    "app/core/validators.py",
+    "app/core/config.py",
+    "app/core/settings/app.py"
+  ],
+  "min_acs_threshold": 0.8
+}

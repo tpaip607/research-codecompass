@@ -1,0 +1,10 @@
+{
+  "task_id": "g1_task_06",
+  "group": "semantic",
+  "description": "Rename API prefix /api to /v1/api",
+  "required_files": [
+    "app/core/settings/app.py",
+    "app/main.py"
+  ],
+  "min_acs_threshold": 1.0
+}

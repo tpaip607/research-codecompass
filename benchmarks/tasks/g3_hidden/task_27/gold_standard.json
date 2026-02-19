@@ -1,0 +1,11 @@
+{
+  "task_id": "g3_task_27",
+  "group": "hidden",
+  "description": "Add comment author cache — CommentsRepo composes ProfilesRepo which composes UsersRepo",
+  "required_files": [
+    "app/db/repositories/comments.py",
+    "app/db/repositories/profiles.py",
+    "app/api/dependencies/comments.py"
+  ],
+  "min_acs_threshold": 0.8
+}

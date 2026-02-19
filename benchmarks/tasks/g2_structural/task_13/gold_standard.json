@@ -1,0 +1,12 @@
+{
+  "task_id": "g2_task_13",
+  "group": "structural",
+  "description": "Extract RWAPIKeyHeader to new security module",
+  "required_files": [
+    "app/api/security.py",
+    "app/api/dependencies/authentication.py",
+    "app/api/routes/authentication.py",
+    "app/api/routes/users.py"
+  ],
+  "min_acs_threshold": 0.8
+}

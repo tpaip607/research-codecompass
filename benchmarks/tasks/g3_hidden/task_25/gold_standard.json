@@ -1,0 +1,11 @@
+{
+  "task_id": "g3_task_25",
+  "group": "hidden",
+  "description": "Extract enrichment pipeline in ArticlesRepo — profiles and tags repos are internal dependencies",
+  "required_files": [
+    "app/db/repositories/articles.py",
+    "app/db/repositories/profiles.py",
+    "app/db/repositories/tags.py"
+  ],
+  "min_acs_threshold": 0.8
+}

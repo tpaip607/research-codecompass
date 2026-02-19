@@ -1,0 +1,20 @@
+# Core dependencies
+anthropic>=0.18.0
+fastmcp>=0.2.0
+neo4j>=5.15.0
+python-dotenv>=1.0.0
+
+# Data processing
+rank-bm25>=0.2.2
+pydantic>=2.0.0
+
+# Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+numpy>=1.24.0
+
+# Analysis
+pandas>=2.0.0
+
+# Development
+ipython>=8.12.0

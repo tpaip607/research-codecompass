@@ -1,0 +1,12 @@
+{
+  "task_id": "g2_task_19",
+  "group": "structural",
+  "description": "Add SelfValidatingModel mixin to domain models",
+  "required_files": [
+    "app/models/common.py",
+    "app/models/domain/articles.py",
+    "app/models/domain/comments.py",
+    "app/models/domain/profiles.py"
+  ],
+  "min_acs_threshold": 0.8
+}

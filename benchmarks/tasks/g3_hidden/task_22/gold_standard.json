@@ -1,0 +1,11 @@
+{
+  "task_id": "g3_task_22",
+  "group": "hidden",
+  "description": "Add email to JWT payload — schema, encode, decode must all change",
+  "required_files": [
+    "app/models/schemas/jwt.py",
+    "app/services/jwt.py",
+    "app/api/dependencies/authentication.py"
+  ],
+  "min_acs_threshold": 0.9
+}

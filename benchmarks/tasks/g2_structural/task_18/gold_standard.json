@@ -1,0 +1,11 @@
+{
+  "task_id": "g2_task_18",
+  "group": "structural",
+  "description": "Create ProfileService for follow/unfollow logic",
+  "required_files": [
+    "app/services/profiles.py",
+    "app/api/routes/profiles.py",
+    "app/db/repositories/profiles.py"
+  ],
+  "min_acs_threshold": 0.8
+}
