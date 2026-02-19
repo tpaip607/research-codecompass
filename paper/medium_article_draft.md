@@ -195,7 +195,7 @@ Three conditions, 3 runs each, 270 total trials:
 Claude uses its built-in tools (Glob, Grep, Read, Edit) with no hints. It has to figure out which files are relevant by searching and exploring.
 
 **Condition B — BM25 Prepended**
-We run BM25 keyword search over the codebase using the task description as the query, then **prepend the top-10 ranked files to the prompt** as a "head start." Claude sees these suggestions before making any tool calls. This replicates the [Agentless](https://github.com/OpenAutoCoder/Agentless) localization approach.
+I run BM25 keyword search over the codebase using the task description as the query, then **prepend the top-10 ranked files to the prompt** as a "head start." Claude sees these suggestions before making any tool calls. This replicates the [Agentless](https://github.com/OpenAutoCoder/Agentless) localization approach.
 
 *Why BM25 when Claude can search?* Because prepending results is **cheaper and faster** than letting Claude search around. One BM25 query costs ~$0.00. Claude making 5-10 Grep/Glob calls to find the same files costs token budget and time. When it works (G1 tasks), it's essentially free performance.
 
@@ -212,7 +212,7 @@ ACS = |files_accessed ∩ required_files| / |required_files|
 
 ## The Results
 
-258 of 270 trials completed (95.6%; 12 failed due to API credit exhaustion). Here's what we found:
+258 of 270 trials completed (95.6%; 12 failed due to API credit exhaustion). Here's what I found:
 
 | Group | Vanilla (A) | BM25 (B) | Graph (C) |
 |-------|-------------|----------|-----------|
@@ -257,11 +257,13 @@ Graph navigation surfaces it immediately. One call. First result. **99.4% ACS** 
 ![G3 Breakthrough](figures/fig6_g3_breakthrough.png)
 *Figure 2: The 23.2 percentage-point improvement on hidden-dependency tasks. Graph navigation succeeds where retrieval fails.*
 
-Breaking down MCP adoption by task group:
+### But Here's the Interesting Part
 
-- **G1 (Semantic)**: 22.2% MCP adoption (tool not needed, model correctly ignores it)
-- **G2 (Structural)**: **0% MCP adoption** (shocking — tool designed for this!)
-- **G3 (Hidden)**: **100% MCP adoption** (with improved prompt engineering)
+The 99.4% isn't uniform. When I broke down **how often Claude actually used the graph tool**, a pattern emerged:
+
+- **G1 (Semantic)**: 22.2% adoption (tool not needed, Claude correctly ignores it)
+- **G2 (Structural)**: **0% adoption** (shocking — tool designed for this!)
+- **G3 (Hidden)**: **100% adoption** (with improved prompt engineering)
 
 ![MCP Adoption](figures/fig2_mcp_adoption.png)
 *Figure 3: MCP tool adoption varies dramatically by task group. G3 shows perfect 100% adoption with improved prompts.*
@@ -309,7 +311,7 @@ The model doesn't know in advance which tasks need the graph. It applies the sam
 
 ### We Tested a Fix
 
-After identifying low adoption in initial G3 trials (85.7%), we created an improved prompt with a **mandatory checklist at the END** (to avoid Lost in the Middle suppression):
+After identifying low adoption in initial G3 trials (85.7%), I created an improved prompt with a **mandatory checklist at the END** (to avoid Lost in the Middle suppression):
 
 ```markdown
 ## ⚠️ MANDATORY PRE-FLIGHT CHECKLIST
