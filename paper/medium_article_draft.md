@@ -208,8 +208,6 @@ I measure **Architectural Coverage Score (ACS)** — what fraction of architectu
 ACS = |files_accessed ∩ required_files| / |required_files|
 ```
 
-> **[SCREENSHOT: The live terminal dashboard showing ACS by condition and task as experiments run]**
-
 ---
 
 ## The Results
