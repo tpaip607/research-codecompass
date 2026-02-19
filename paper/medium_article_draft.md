@@ -114,7 +114,8 @@ Found 255 edges:
    34 INSTANTIATES
 ```
 
-> **[SCREENSHOT: Neo4j browser showing the dependency graph — nodes as files, edges colored by type]**
+![Neo4j Dependency Graph](figures/neo4j_graph_visualization.png)
+*The complete dependency graph in Neo4j. Each pink node is a Python file, edges show IMPORTS/INHERITS/INSTANTIATES relationships. This is the structural map that retrieval can't see.*
 
 Now I expose this graph through an MCP server — a tool Claude Code can call directly during task execution:
 
