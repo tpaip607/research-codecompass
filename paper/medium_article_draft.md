@@ -1,6 +1,6 @@
 # I Gave Claude a Map of My Codebase. Here's What Happened.
 
-*How a graph database changed the way an AI navigates 40,000 lines of code — and what it reveals about the real bottleneck in agentic coding.*
+*How a graph database changed the way an AI navigates a 40-file codebase — and what it reveals about the real bottleneck in agentic coding.*
 
 ---
 
