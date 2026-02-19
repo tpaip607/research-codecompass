@@ -191,10 +191,12 @@ BM25 search for "logger parameter BaseRepository" → `database.py` is result #1
 Three conditions, 3 runs each, 270 total trials:
 
 **Condition A — Vanilla Claude Code**
-No augmentation. Just Claude with its default tools (file search, grep, read, edit).
+Claude uses its built-in tools (Glob, Grep, Read, Edit) with no hints. It has to figure out which files are relevant by searching and exploring.
 
-**Condition B — BM25 Augmented**
-Top-10 keyword-ranked files prepended to the prompt. Replicates the [Agentless](https://github.com/OpenAutoCoder/Agentless) approach.
+**Condition B — BM25 Prepended**
+We run BM25 keyword search over the codebase using the task description as the query, then **prepend the top-10 ranked files to the prompt** as a "head start." Claude sees these suggestions before making any tool calls. This replicates the [Agentless](https://github.com/OpenAutoCoder/Agentless) localization approach.
+
+*Why BM25 when Claude can search?* Because prepending results is **cheaper and faster** than letting Claude search around. One BM25 query costs ~$0.00. Claude making 5-10 Grep/Glob calls to find the same files costs token budget and time. When it works (G1 tasks), it's essentially free performance.
 
 **Condition C — CodeCompass Graph**
 MCP server registered. Prompt instructs Claude to call `get_architectural_context` first and read every returned file.
@@ -344,8 +346,8 @@ The improved prompt validates that careful prompt design can close the adoption 
 
 If you're building with AI coding assistants today, here's the honest takeaway:
 
-**1. For semantic tasks — use BM25. It's free and it's perfect.**
-BM25 hit 100% ACS on G1 with zero variance. If your task involves changing an error message, renaming a constant, or updating a config value, prepend the top-10 keyword-ranked files and call it done. No graph needed.
+**1. For semantic tasks — prepend BM25 file rankings. It's free and it's perfect.**
+BM25 hit 100% ACS on G1 with zero variance. If your task involves changing an error message, renaming a constant, or updating a config value, **run a quick BM25 query and prepend the top-10 files to your prompt as context**. This gives the coding agent a head start — it sees "here are the most relevant files" before making any tool calls. Costs ~$0.00, saves token budget, perfect accuracy. No graph needed.
 
 **2. For cross-file refactoring — the graph is the only tool that works.**
 BM25 got 75% on hidden-dependency tasks. Vanilla Claude got 76%. Neither retrieved the file that actually mattered. The graph got it in one call. If you're adding a parameter to a base class, changing a shared interface, or touching anything in the architectural core of a codebase, retrieve by structure, not by semantics.
@@ -443,7 +445,7 @@ The navigation problem isn't going away. It's just changing shape.
 
 ---
 
-*Tarakanath Paipuru is a [role] at [institution]. This research was conducted independently.*
+*Tarakanath Paipuru is a Principal Engineer focused on Data and AI. This research was conducted independently.*
 
 *If you found this useful or have questions about methodology, reach out: [contact]*
 
