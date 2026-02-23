@@ -1,0 +1,12 @@
+# Code owners for automatic review requests
+
+# Default owner for everything in the repo
+* @tpaip607
+
+# Specific ownership for critical components
+/harness/ @tpaip607
+/data_processing/ @tpaip607
+/mcp_server/ @tpaip607
+/.github/ @tpaip607
+/docker-compose.yml @tpaip607
+/requirements.txt @tpaip607

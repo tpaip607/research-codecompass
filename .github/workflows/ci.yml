@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov
+
+    - name: Run tests
+      run: |
+        # Add test command when tests are available
+        # pytest tests/ --cov=. --cov-report=xml
+        echo "No tests configured yet"
+
+    - name: Verify scripts execute
+      run: |
+        # Verify critical scripts can be imported/run
+        python -c "from harness import calculate_acs, aggregate_results"
+        python -c "from data_processing import ast_parser"
+        echo "All imports successful"
+
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.11"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint
+        pip install -r requirements.txt || true
+
+    - name: Run pylint
+      run: |
+        pylint $(git ls-files '*.py') --exit-zero
+
+  validate-structure:
+    name: Validate Repository Structure
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Check required files exist
+      run: |
+        test -f README.md || exit 1
+        test -f requirements.txt || exit 1
+        test -f docker-compose.yml || exit 1
+        test -f .gitignore || exit 1
+        test -d benchmarks/tasks || exit 1
+        test -d harness || exit 1
+        test -d data_processing || exit 1
+        test -d mcp_server || exit 1
+        echo "✓ All required files and directories present"
+
+    - name: Check no secrets in repo
+      run: |
+        # Ensure no API keys or secrets committed
+        ! grep -r "ANTHROPIC_API_KEY.*sk-ant-" . --include="*.py" --include="*.yml" --include="*.yaml" || exit 1
+        ! grep -r "NEO4J_PASSWORD" . --include="*.py" || exit 1
+        echo "✓ No secrets found in repository"
