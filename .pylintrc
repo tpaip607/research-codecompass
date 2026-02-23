@@ -1,0 +1,67 @@
+[MASTER]
+# Use multiple processes for faster checking
+jobs=4
+
+# Python version to target
+py-version=3.11
+
+[MESSAGES CONTROL]
+# Disable warnings common in research codebases
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-many-locals,
+    too-many-branches,
+    too-many-statements,
+    too-many-instance-attributes,
+    too-few-public-methods,
+    broad-exception-caught,
+    line-too-long,
+    invalid-name,
+    redefined-outer-name,
+    wrong-import-order,
+    wrong-import-position,
+    import-outside-toplevel,
+    unused-import,
+    unused-argument,
+    unused-variable,
+    global-statement,
+    no-else-return,
+    duplicate-code,
+    f-string-without-interpolation,
+    unnecessary-pass,
+    disallowed-name,
+    multiple-statements,
+    reimported,
+    modified-iterating-list,
+    subprocess-run-check,
+    bare-except,
+    unspecified-encoding,
+    use-dict-literal,
+    possibly-used-before-assignment
+
+# Enable only critical warnings
+enable=
+    import-error,
+    undefined-variable,
+    used-before-assignment
+
+[FORMAT]
+# Maximum line length
+max-line-length=120
+
+[BASIC]
+# Good variable names
+good-names=i,j,k,ex,Run,_,df,ax,fig,n,x,y,z,t,r,p
+
+[DESIGN]
+# Reasonable limits for research code
+max-args=10
+max-locals=20
+max-branches=15
+max-statements=60
+
+[SIMILARITIES]
+# Minimum lines for duplicate code detection
+min-similarity-lines=10
