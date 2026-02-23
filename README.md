@@ -16,9 +16,11 @@ Empirical evaluation demonstrating that graph-based structural navigation provid
 From 258 controlled trials across 30 benchmark tasks:
 
 1. **BM25 is optimal for semantic tasks** (G1: **100% ACS**, zero variance)
-2. **Graph navigation dominates on hidden dependencies** (G3: **99.4% ACS** vs 76.2% baseline — **+23.2pp**)
+2. **Graph navigation dominates on hidden dependencies** (G3: **99.4% ACS** vs 76.2% baseline — **+23.2pp**, t=5.23, p<0.001)
 3. **Tool effectiveness ≠ tool adoption**: When used, graph achieves **99.5% ACS**; when ignored, **80.2% ACS** (identical to baseline)
-4. **Prompt engineering matters**: Checklist-at-END formatting achieved **100% tool adoption** on G3 tasks (up from 85.7%)
+4. **G2 regression explained by zero adoption**: 0% of G2 trials (0/30) used the graph tool, resulting in prompt overhead without navigational benefit
+5. **Navigation quality correlates with implementation**: Trials achieving complete coverage (ACS ≥ 1.0) edited **63% of required files** vs **40% for incomplete trials** (ECR metric)
+6. **Prompt engineering matters**: Checklist-at-END formatting achieved **100% tool adoption** on G3 tasks (up from 85.7%)
 
 ![ACS by Condition](paper/figures/fig1_acs_by_condition.png)
 *Architectural Coverage Score across experimental conditions. Graph navigation (C) achieves 99.4% on hidden-dependency tasks (G3).*
@@ -60,6 +62,8 @@ Each task run 3 times per condition = 270 planned trials (258 completed, 95.6%).
 ### Metrics
 
 - **ACS (Architectural Coverage Score):** `|files_accessed ∩ required_files| / |required_files|`
+- **ECR (Edit Completeness Rate):** `|files_edited ∩ required_files| / |required_files|` — fraction of required files actually edited
+- **RER (Read-to-Edit Ratio):** `|files_read| / |files_edited|` — exploration efficiency (lower is better)
 - **FCTC (First Correct Tool Call):** Steps to first required file (lower is better)
 - **MCP Adoption:** Percentage of trials invoking graph tool
 
@@ -114,10 +118,33 @@ pip install -r requirements.txt
 # Copy environment template
 cp .env.example .env
 # Edit .env and add your ANTHROPIC_API_KEY
+```
 
-# Start Neo4j
+### Neo4j Setup
+
+CodeCompass uses Neo4j to store and query the dependency graph. Start Neo4j using Docker Compose:
+
+```bash
+# Start Neo4j in the background
 docker compose up -d
 
+# Verify Neo4j is running
+docker ps | grep neo4j
+# Should show: neo4j:5.x.x running on ports 7474 (HTTP) and 7687 (Bolt)
+
+# Check logs if needed
+docker compose logs neo4j
+```
+
+**Access Neo4j Browser:** Open http://localhost:7474 in your browser
+- **Default credentials:** `neo4j` / `research123` (configured in `docker-compose.yml`)
+- **Connection URI:** `bolt://localhost:7687`
+
+**Note:** The docker-compose.yml also starts Weaviate (semantic search), but CodeCompass currently uses BM25 for retrieval. Weaviate is included for future experiments.
+
+Once Neo4j is running, build the dependency graph:
+
+```bash
 # Build the dependency graph and BM25 index
 python data_processing/ast_parser.py
 python data_processing/build_graph.py
