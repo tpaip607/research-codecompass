@@ -125,10 +125,16 @@ def normalize_path(path: str, repo_root: str = "") -> str:
 
 def calculate_metrics(tool_calls: list[dict], required_files: list[str]) -> dict:
     """
-    Compute ACS, FCTC, and supporting metrics from tool call trace.
+    Compute ACS, FCTC, ECR, RER, and supporting metrics from tool call trace.
+
+    New metrics:
+      - ECR (Edit Completeness Rate): fraction of required files actually edited
+      - RER (Read-to-Edit Ratio): files_read / files_edited (lower is better)
     """
     required_set = set(required_files)
     accessed_files = set()
+    read_files = set()  # NEW: track Read operations
+    edited_files = set()  # NEW: track Edit operations
     mcp_calls = 0
     internal_search_calls = 0
     fctc = None  # steps until first required file touched
@@ -146,20 +152,36 @@ def calculate_metrics(tool_calls: list[dict], required_files: list[str]) -> dict
             norm = normalize_path(raw_path)
             accessed_files.add(norm)
 
+            # NEW: Track Read vs Edit separately
+            if name == "Read":
+                read_files.add(norm)
+            elif name == "Edit":
+                edited_files.add(norm)
+
             if norm in required_set and fctc is None:
                 fctc = call["step"]
 
     hit = accessed_files & required_set
     acs = len(hit) / len(required_set) if required_set else 0.0
 
+    # NEW: Calculate ECR and RER
+    edited_hit = edited_files & required_set
+    ecr = len(edited_hit) / len(required_set) if required_set else 0.0
+    rer = len(read_files) / len(edited_files) if edited_files else float('inf')
+
     return {
         "acs": round(acs, 4),
+        "ecr": round(ecr, 4),  # NEW
+        "rer": round(rer, 2) if rer != float('inf') else -1,  # NEW: -1 = no edits
         "fctc": fctc if fctc is not None else -1,  # -1 = never touched a required file
         "total_tool_calls": len(tool_calls),
         "mcp_calls": mcp_calls,
         "internal_search_calls": internal_search_calls,
         "files_accessed": sorted(accessed_files),
+        "files_read": sorted(read_files),  # NEW
+        "files_edited": sorted(edited_files),  # NEW
         "required_files_hit": sorted(hit),
+        "required_files_edited": sorted(edited_hit),  # NEW
         "required_files_missed": sorted(required_set - accessed_files),
         "required_files_total": len(required_set),
     }
@@ -185,12 +207,17 @@ def main():
             "task_id": task_id,
             "error": "transcript_not_found",
             "acs": 0.0,
+            "ecr": 0.0,
+            "rer": -1,
             "fctc": -1,
             "total_tool_calls": 0,
             "mcp_calls": 0,
             "internal_search_calls": 0,
             "files_accessed": [],
+            "files_read": [],
+            "files_edited": [],
             "required_files_hit": [],
+            "required_files_edited": [],
             "required_files_missed": required_files,
             "required_files_total": len(required_files),
         }
@@ -207,10 +234,14 @@ def main():
     # Print summary
     print(f"Task: {task_id}")
     print(f"  ACS:              {metrics['acs']:.2%}  ({len(metrics['required_files_hit'])}/{metrics['required_files_total']} required files)")
+    print(f"  ECR:              {metrics['ecr']:.2%}  ({len(metrics.get('required_files_edited', []))}/{metrics['required_files_total']} required files edited)")
+    print(f"  RER:              {metrics['rer']:.2f}  (read-to-edit ratio)")
     print(f"  FCTC:             step {metrics['fctc']}")
     print(f"  Total tool calls: {metrics['total_tool_calls']}")
     print(f"  MCP calls:        {metrics['mcp_calls']}")
     print(f"  Internal search:  {metrics['internal_search_calls']}")
+    print(f"  Files read:       {len(metrics.get('files_read', []))}")
+    print(f"  Files edited:     {len(metrics.get('files_edited', []))}")
     if metrics["required_files_missed"]:
         print(f"  Missed files:     {metrics['required_files_missed']}")
 

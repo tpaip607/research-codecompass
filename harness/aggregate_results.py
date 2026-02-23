@@ -84,12 +84,17 @@ def load_all_metrics(results_dir: Path) -> list[dict]:
             "group": group,
             "run_number": run_number,
             "acs": data.get("acs", 0.0),
+            "ecr": data.get("ecr", 0.0),  # NEW
+            "rer": data.get("rer", -1),  # NEW
             "fctc": data.get("fctc", -1),
             "total_tool_calls": data.get("total_tool_calls", 0),
             "mcp_calls": data.get("mcp_calls", 0),
             "internal_search_calls": data.get("internal_search_calls", 0),
             "required_files_total": data.get("required_files_total", 0),
             "required_files_hit": len(data.get("required_files_hit", [])),
+            "required_files_edited": len(data.get("required_files_edited", [])),  # NEW
+            "files_read_count": len(data.get("files_read", [])),  # NEW
+            "files_edited_count": len(data.get("files_edited", [])),  # NEW
         })
 
     return rows
